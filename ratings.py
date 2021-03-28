@@ -8,9 +8,8 @@ import numpy as np
 import multiprocessing
 import psutil
 
-max_index = 147258
 series_list = []
-curr_index = 170000
+curr_index = 10000 # Ending index ID
 
 for i in np.arange(curr_index-10000, curr_index):
     try:
