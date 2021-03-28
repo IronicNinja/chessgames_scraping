@@ -100,9 +100,9 @@ def scrape(indices):
 
     df.to_csv(f"master_games{indices[0]}.csv")
 
-splits = 4
-start = 1996000
-look_at = 1000
+splits = 4 # How many cores you want to use. I recommend at max 4 so that the chessgames server is not overloaded.
+start = 1000000 # start is your starting ID!
+look_at = 1000 # How many games forward you want to look
 index_list = []
 for num in range(splits):
     index_list.append(np.arange(start+look_at*num, start+look_at*(num+1)))
@@ -113,83 +113,4 @@ if RUN:
         with multiprocessing.Pool(processes=splits) as pool:
             pool.map(scrape, index_list)
 
-"""
-With multiprocessing, 4000 games took 50 mins
-
-Not found games:
-1019672
-1019675
-1048371
-1056020
-1054860
-1061462
-1059928
-1067494
-1075210
-1075725
-1081155
-1080483
-1080584
-1078973
-1084094
-1082212
-1082774
-1087033
-1088706
-1090520
-1107073
-1151142
-1151979
-1120838
-1122039
-1128398
-1127913
-1132585
-1211018
-1139511
-1139729
-1144033
-1216885
-1147859
-1306162
-1224815
-1234282
-1404430
-1243397
-1243789
-1243797
-1427923
-1430415
-1457756
-1457766
-1449022
-1480218
-1480677
-1511945
-1525632
-1531128
-1536414
-1555915
-1581428
-1580824
-1591433
-1591752
-1591781
-1255559
-1255590
-1610027
-1612746
-1627943
-1648853
-1671162
-1676233
-1697613
-1715123
-1718594
-1739681
-1740441
-1751462
-1758158
-"""
-
-#scrape(np.arange(1005000, 1006000))
+# Final note: With multiprocessing, 4000 games took 50 mins
